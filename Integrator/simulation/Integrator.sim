@@ -1,0 +1,55 @@
+import static oms3.SimBuilder.instance as OMS3
+def home = oms_prj
+def startDate= "1994-01-01 00:00"
+def endDate= "1995-01-01 00:00"
+OMS3.sim {
+
+     resource "$oms_prj/lib/waterbudget-0.0.1-SNAPSHOT-jar-with-dependencies.jar"
+    
+ model(while:"reader_data_Qtt.doProcess") {
+   components {
+     
+        "reader_data_Qtt"           "org.jgrasstools.gears.io.timedependent.OmsTimeSeriesIteratorReader"    
+        "integrator"                   "integrator.InjectionTimeIntegration"   
+        "writer_Qint"             "org.jgrasstools.gears.io.timedependent.OmsTimeSeriesIteratorWriter"
+
+   }
+
+  
+   parameter{
+        
+        "reader_data_Qtt.file"            "${home}/data/ETtt.csv"
+        "reader_data_Qtt.idfield"          "ID"  
+        "reader_data_Qtt.tStart"           "${startDate}"
+        "reader_data_Qtt.tEnd"             "${endDate}"
+        "reader_data_Qtt.tTimestep"          60
+        "reader_data_Qtt.fileNovalue"       "-9999"
+        
+        
+        "integrator.ID"    209
+        "integrator.tStartDate"    "${startDate}"
+        "integrator.tEndDate"     "${endDate}"
+        
+                
+ 
+        
+        "writer_Qint.file" "${home}/output/ETtt_int.csv"
+        "writer_Qint.tStart" "${startDate}"
+        "writer_Qint.tTimestep" 60
+        "writer_Qint.fileNovalue" "-9999"
+         
+
+   }
+   connect {
+        
+        "reader_data_Qtt.outData"            "integrator.inQoutvalues"
+ 
+        "integrator.outHMQ"                      "writer_Qint.inData"
+         
+     
+   }
+
+ }
+}
+
+

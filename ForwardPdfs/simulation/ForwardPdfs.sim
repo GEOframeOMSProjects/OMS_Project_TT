@@ -1,0 +1,132 @@
+import static oms3.SimBuilder.instance as OMS3
+def home = oms_prj
+def startDate= "1994-01-01 00:00"
+def endDate= "1995-01-01 00:00"
+OMS3.sim {
+
+     resource "$oms_prj/lib/waterbudget-0.0.1-SNAPSHOT-jar-with-dependencies.jar"
+    
+ model(while:"reader_data_J.doProcess") {
+   components {
+     
+        "reader_data_J"           "org.jgrasstools.gears.io.timedependent.OmsTimeSeriesIteratorReader"
+        "reader_data_pQ"          "org.jgrasstools.gears.io.timedependent.OmsTimeSeriesIteratorReader"
+        "reader_data_pET"         "org.jgrasstools.gears.io.timedependent.OmsTimeSeriesIteratorReader"
+        "reader_data_Qback"        "org.jgrasstools.gears.io.timedependent.OmsTimeSeriesIteratorReader"
+        "reader_data_ETback"       "org.jgrasstools.gears.io.timedependent.OmsTimeSeriesIteratorReader"
+        
+        "pdfs"                   "travelTimesFor.ProbabilitiesForward"   
+        "writer_theta"             "org.jgrasstools.gears.io.timedependent.OmsTimeSeriesIteratorWriter"
+        "writer_pQ"             "org.jgrasstools.gears.io.timedependent.OmsTimeSeriesIteratorWriter" 
+        "writer_pET"            "org.jgrasstools.gears.io.timedependent.OmsTimeSeriesIteratorWriter" 
+        "writer_Q"         "org.jgrasstools.gears.io.timedependent.OmsTimeSeriesIteratorWriter"           
+        "writer_ET"             "org.jgrasstools.gears.io.timedependent.OmsTimeSeriesIteratorWriter"
+   }
+
+  
+   parameter{
+        
+        "reader_data_J.file"            "${home}/data/rainfall.csv"
+        "reader_data_J.idfield"          "ID"  
+        "reader_data_J.tStart"           "${startDate}"
+        "reader_data_J.tEnd"             "${endDate}"
+        "reader_data_J.tTimestep"          60
+        "reader_data_J.fileNovalue"       "-9999"
+        
+        
+                
+        "reader_data_pQ.file"            "${home}/data/pQ.csv"
+        "reader_data_pQ.idfield"          "ID"  
+        "reader_data_pQ.tStart"           "${startDate}"
+        "reader_data_pQ.tEnd"             "${endDate}"
+        "reader_data_pQ.tTimestep"          60
+        "reader_data_pQ.fileNovalue"       "-9999"
+        
+        
+                
+        "reader_data_pET.file"            "${home}/data/pET.csv"
+        "reader_data_pET.idfield"          "ID"  
+        "reader_data_pET.tStart"           "${startDate}"
+        "reader_data_pET.tEnd"             "${endDate}"
+        "reader_data_pET.tTimestep"          60
+        "reader_data_pET.fileNovalue"       "-9999"
+        
+        
+                
+        "reader_data_Qback.file"            "${home}/data/Qback.csv"
+        "reader_data_Qback.idfield"          "ID"  
+        "reader_data_Qback.tStart"           "${startDate}"
+        "reader_data_Qback.tEnd"             "${endDate}"
+        "reader_data_Qback.tTimestep"          60
+        "reader_data_Qback.fileNovalue"       "-9999"
+        
+        
+                
+        "reader_data_ETback.file"            "${home}/data/ETback.csv"
+        "reader_data_ETback.idfield"          "ID"  
+        "reader_data_ETback.tStart"           "${startDate}"
+        "reader_data_ETback.tEnd"             "${endDate}"
+        "reader_data_ETback.tTimestep"          60
+        "reader_data_ETback.fileNovalue"       "-9999"
+        
+        
+        
+        
+         "pdfs.ID"   209
+         "pdfs.tStartDate"     "${startDate}"
+         "pdfs.tStartDateWaterBudget"   "${startDate}"
+         "pdfs.tEndDate"   "${endDate}"
+            
+          "pdfs.inPathToDischarge"       "${home}/data/Q.csv"
+          "pdfs.inPathToET"              "${home}/data/ET.csv"        
+
+        
+        "writer_pQ.file" "${home}/output/pQ.csv"
+        "writer_pQ.tStart" "${startDate}"
+        "writer_pQ.tTimestep" 60
+         "writer_pQ.fileNovalue" "-9999"
+        
+       // "writer_pET.file" "${home}/output/pET.csv"
+       // "writer_pET.tStart" "${startDate}"
+       // "writer_pET.tTimestep" 60
+        //"writer_pET.fileNovalue" "-9999"
+        
+        
+       // "writer_theta.file" "${home}/output/theta.csv"
+       // "writer_theta.tStart" "${startDate}"
+       // "writer_theta.tTimestep" 60
+       // "writer_theta.fileNovalue" "-9999"
+        
+       // "writer_Q.file" "${home}/output/Qtt.csv"
+       // "writer_Q.tStart" "${startDate}"
+       // "writer_Q.tTimestep" 60
+       // "writer_Q.fileNovalue" "-9999"
+        
+        
+       // "writer_ET.file" "${home}/output/ETtt.csv"
+       // "writer_ET.tStart" "${startDate}"
+       // "writer_ET.tTimestep" 60
+       // "writer_ET.fileNovalue" "-9999"
+         
+
+   }
+   connect {
+        
+        "reader_data_J.outData"            "pdfs.inPrecipvalues"
+        "reader_data_pQ.outData"                     "pdfs.inPQ_backValues"
+         "reader_data_pET.outData"                 "pdfs.inPET_backValues"
+           "reader_data_Qback.outData"               "pdfs.inQ_tiValues"
+          "reader_data_ETback.outData"             "pdfs.inET_tiValues" 
+       // "pdfs.outHMtheta"                    "writer_theta.inData"             
+        "pdfs.outHMPQfor"                   "writer_pQ.inData"            
+       // "pdfs.outHMPETfor"                  "writer_pET.inData"           
+       // "pdfs.outHMQfor"                       "writer_Q.inData" 
+       // "pdfs.outHMETfor"                      "writer_ET.inData"
+         
+     
+   }
+
+ }
+}
+
+
