@@ -44,40 +44,40 @@ resource "$oms_prj/lib"
 
 
         
-        "writer_p.file" "${home}/output/p.csv"
-        "writer_p.tStart" "${startDate}"
-        "writer_p.tTimestep" 60
-        "writer_p.fileNovalue" "-9999"
+       // "writer_p.file" "${home}/output/p.csv"
+       // "writer_p.tStart" "${startDate}"
+       // "writer_p.tTimestep" 60
+       // "writer_p.fileNovalue" "-9999"
         
-        //"writer_pQ.file" "${home}/output/pQ.csv"
-        //"writer_pQ.tStart" "${startDate}"
-       // "writer_pQ.tTimestep" 60
-       // "writer_pQ.fileNovalue" "-9999"
+        "writer_pQ.file" "${home}/output/pQ.csv"
+        "writer_pQ.tStart" "${startDate}"
+        "writer_pQ.tTimestep" 60
+        "writer_pQ.fileNovalue" "-9999"
         
        // "writer_pET.file" "${home}/output/pET.csv"
        // "writer_pET.tStart" "${startDate}"
-       // "writer_pET.tTimestep" 60
-        //"writer_pET.fileNovalue" "-9999"
+      //  "writer_pET.tTimestep" 60
+       // "writer_pET.fileNovalue" "-9999"
         
         //"writer_Qback.file" "${home}/output/Qback.csv"
-       // "writer_Qback.tStart" "${startDate}"
-      // "writer_Qback.tTimestep" 60
-      // "writer_Qback.fileNovalue" "-9999"
+        //"writer_Qback.tStart" "${startDate}"
+        //"writer_Qback.tTimestep" 60
+        //"writer_Qback.fileNovalue" "-9999"
         
        // "writer_ETback.file" "${home}/output/ETback.csv"
        // "writer_ETback.tStart" "${startDate}"
        // "writer_ETback.tTimestep" 60
        // "writer_ETback.fileNovalue" "-9999"
         
-       // "writer_Qtt.file" "${home}/output/Qtt.csv"
-       // "writer_Qtt.tStart" "${startDate}"
+        //"writer_Qtt.file" "${home}/output/Qtt.csv"
+        //"writer_Qtt.tStart" "${startDate}"
        // "writer_Qtt.tTimestep" 60
        // "writer_Qtt.fileNovalue" "-9999"
         
-        //"writer_ETtt.file" "${home}/output/ETtt.csv"
+       // "writer_ETtt.file" "${home}/output/ETtt.csv"
        // "writer_ETtt.tStart" "${startDate}"
-       // "writer_ETtt.tTimestep" 60
-       // "writer_ETtt.fileNovalue" "-9999"
+        // "writer_ETtt.tTimestep" 60
+      //  "writer_ETtt.fileNovalue" "-9999"
          
 
    }
@@ -85,15 +85,15 @@ resource "$oms_prj/lib"
         
         "reader_data_J.outData"            "pdfs.inPrecipvalues"
           
-        "pdfs.outHMPback"                    "writer_p.inData"             
-        //"pdfs.outHMPQback"                   "writer_pQ.inData"            
+       // "pdfs.outHMPback"                    "writer_p.inData"             
+        "pdfs.outHMPQback"                   "writer_pQ.inData"            
        // "pdfs.outHMPETback"                  "writer_pET.inData" 
        
-       // "pdfs.outHMQback"                   "writer_Qback.inData"            
+         //"pdfs.outHMQback"                   "writer_Qback.inData"            
         //"pdfs.outHMETback"                  "writer_ETback.inData"           
 
-        //"pdfs.outHMQtt"                       "writer_Qtt.inData" 
-        //"pdfs.outHMETtt"                      "writer_ETtt.inData"
+       // "pdfs.outHMQtt"                       "writer_Qtt.inData" 
+       // "pdfs.outHMETtt"                      "writer_ETtt.inData"
          
      
    }
