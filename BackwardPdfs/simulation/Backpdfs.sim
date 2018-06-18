@@ -10,7 +10,7 @@ resource "$oms_prj/lib"
    components {
      
         "reader_data_J"        "org.jgrasstools.gears.io.timedependent.OmsTimeSeriesIteratorReader"
-        "pdfs"                   "travelTimesBack.ProbabilitiesBackward"   
+        "pdfs"                   "travelTimesBack.ProbabilitiesBackward" 
         "writer_p"             "org.jgrasstools.gears.io.timedependent.OmsTimeSeriesIteratorWriter"
         "writer_pQ"             "org.jgrasstools.gears.io.timedependent.OmsTimeSeriesIteratorWriter" 
         "writer_pET"            "org.jgrasstools.gears.io.timedependent.OmsTimeSeriesIteratorWriter" 
@@ -34,6 +34,7 @@ resource "$oms_prj/lib"
          "pdfs.tStartDate"     "${startDate}"
          "pdfs.tStartDateWaterBudget"   "${startDate}"
          "pdfs.tEndDate"   "${endDate}"
+         "pdfs.tTimestep"          60
             
           "pdfs.inPathToStorage"         "${home}/data/Storage.csv"
           "pdfs.inPathToDischarge"       "${home}/data/Q.csv"
